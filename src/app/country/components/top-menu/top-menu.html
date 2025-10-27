@@ -1,28 +1,32 @@
-<ul class="menu bg-base-200 sm:menu-horizontal rounded-box">
-  <li>
-    <a>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-      </svg>
-      Inbox
-      <span class="badge badge-xs">99+</span>
-    </a>
+<ul #menu [attr.is-open]="isOpen()" class="menu bg-base-200 md:menu-horizontal rounded-box fixed md:static">
+  <li menu-item label="Por capital" route="by-capital">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor"
+        d="M5 17.5h2m2 0h6m2 0h2M2.5 4.5h19m0 9s-3.969 1-9.5 1s-9.5-1-9.5-1m0-12h19v21h-2.25l-.075-.12a4 4 0 0 0-3.392-1.88H8.217a4 4 0 0 0-3.392 1.88l-.075.12H2.5z"
+        stroke-width="1" />
+    </svg>
   </li>
-  <li>
-    <a>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-      Updates
-      <span class="badge badge-xs badge-warning">NEW</span>
-    </a>
+  <li menu-item label="Por país" route="/country">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor"
+        d="M.5 15.5v-2.25S6 10.5 9.75 9.5V4.211c0-.79.23-1.565.707-2.194c.364-.48.828-1.052 1.293-1.517h.5c.465.465.93 1.037 1.293 1.517c.478.629.707 1.404.707 2.194V9.5c3.75 1 9.25 3.75 9.25 3.75v2.25s-5.5-1-9.25-1c0 0-.5 2.28-.5 6.5c0 0 1.25.75 2.25 1.75v.5S13.75 23 12 23s-4 .25-4 .25v-.5c1-1 2.25-1.75 2.25-1.75c0-4.22-.5-6.5-.5-6.5c-3.75 0-9.25 1-9.25 1Z"
+        stroke-width="1" />
+    </svg>
   </li>
-  <li>
-    <a>
-      Stats
-      <span class="badge badge-xs badge-info"></span>
-    </a>
+
+  <li menu-item label="Por región" route="#">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor"
+        d="M7.478 18.149a1.5 1.5 0 0 1-2.954.52m11.999-2.25a1.5 1.5 0 0 0 2.954-.52M8 11.758V4.636m8 5.648V3.182m6.97 6.23q.03-.717.03-1.503C23 4.41 22.5 2 22.5 2l-21 3.818S1 8.41 1 11.91q0 .786.03 1.492m21.94-3.99C22.862 12.127 22.5 14 22.5 14l-21 3.818s-.362-1.743-.47-4.417m21.94-3.99c-10.656.973-21.302 3.818-21.94 3.99M23 19L1 23"
+        stroke-width="1" />
+    </svg>
   </li>
 </ul>
+
+<div class="flex-none absolute right-0 md:hidden">
+  <button #menuButton (click)="menuButtonClick()" class="btn btn-square btn-ghost">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-5 w-5 stroke-current">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+  </button>
+</div>

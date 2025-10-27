@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+.menu{
+  @apply transition-all mt-1;
+}
+
+.menu[is-open="true"] {
+  @apply top-0;
+}
+
+.menu[is-open="false"] {
+  @apply top-[-120px];
+}
