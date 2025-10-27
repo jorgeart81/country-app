@@ -1,0 +1,29 @@
+<section class="mt-5">
+  <table class="table table-md mt-2 w-full">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Icono</th>
+        <th>Bandera</th>
+        <th>Nombre</th>
+        <th>Capital</th>
+        <th>Población</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (item of countries(); track item.cca2; let index = $index) {
+      <tr>
+        <th>{{index+1}}</th>
+        <th>{{item.flag}}</th>
+        <th><img [src]="item.flagSvg" [alt]="item.name" class="w-10"></th>
+        <th>{{item.name}}</th>
+        <th>{{item.capital}}</th>
+        <th><span class="badge badge-secondary">{{item.population | number}}</span></th>
+        <th><a [routerLink]="`/country/by/${item.cca2}`" class="link-primary cursor-pointer">Más información</a></th>
+      </tr>
+      }
+    </tbody>
+  </table>
+</section>
