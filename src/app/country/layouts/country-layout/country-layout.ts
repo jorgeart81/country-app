@@ -6,6 +6,7 @@ import { TopMenu } from "../../components/top-menu/top-menu";
   selector: 'app-country-layout',
   imports: [RouterOutlet, TopMenu],
   templateUrl: './country-layout.html',
+  host: { class: 'flex-1 flex flex-col' }
 })
 export class CountryLayout {
 

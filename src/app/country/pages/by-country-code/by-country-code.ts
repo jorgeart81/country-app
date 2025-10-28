@@ -10,6 +10,7 @@ import { CountryInformation } from "./country-information/country-information";
   selector: 'by-country-code',
   imports: [NotFound, CountryInformation],
   templateUrl: './by-country-code.html',
+  host:{class:'flex-1 flex flex-col'}
 })
 export class ByCountryCode {
   countryService = inject(CountryService)

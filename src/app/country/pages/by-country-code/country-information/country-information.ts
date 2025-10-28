@@ -6,6 +6,7 @@ import { DecimalPipe } from '@angular/common';
   selector: 'country-information-page',
   imports: [DecimalPipe],
   templateUrl: './country-information.html',
+  host: { class: 'flex flex-col' }
 })
 export class CountryInformation {
   country = input.required<Country>();

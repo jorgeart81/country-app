@@ -7,7 +7,7 @@ import { MenuItem } from "../menu-item/menu-item";
   templateUrl: './top-menu.html',
   styleUrl: './top-menu.css',
   host: {
-    class: 'relative w-full flex justify-center min-h-12',
+    class: 'relative w-full flex justify-center min-h-12 z-10',
   }
 })
 export class TopMenu {
