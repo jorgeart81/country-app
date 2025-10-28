@@ -1,5 +1,6 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, linkedSignal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
 
 import { CountryList } from "../../components/country-list/country-list";
@@ -20,8 +21,12 @@ export class ByRegionPage {
     'Oceania',
     'Antarctic',
   ];
-  countryService = inject(CountryService)
-  selectedRegion = signal<Region | null>(null)
+  readonly countryService = inject(CountryService)
+  activatedRoute = inject(ActivatedRoute)
+  router = inject(Router)
+
+  queryParam = this.activatedRoute.snapshot.queryParamMap.get('query') ?? ''
+  selectedRegion = linkedSignal<string>(() => this.queryParam)
 
   isSelected = (region: Region) => region === this.selectedRegion()
 
@@ -29,7 +34,12 @@ export class ByRegionPage {
   countryResource = rxResource({
     params: () => ({ query: this.selectedRegion() }),
     stream: ({ params }) => {
-      if (!params.query) return of([]);
+      const region = this.regions.find(r => r.toLocaleLowerCase() == params.query.toLowerCase())
+      if (!params.query || region == undefined) return of([]);
+
+      this.router.navigate(['/country/by-region'], {
+        queryParams: { query: region }
+      })
 
       return this.countryService.searchByRegion(params.query);
     },

@@ -1,5 +1,6 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, linkedSignal, signal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
 
 import { CountryList } from "../../components/country-list/country-list";
@@ -12,14 +13,23 @@ import { CountryService } from '../../services/country-service';
   templateUrl: './by-country.html',
 })
 export class ByCountry {
-  countryService = inject(CountryService)
-  query = signal<string>('')
+  readonly countryService = inject(CountryService)
+  activatedRoute = inject(ActivatedRoute)
+  router = inject(Router)
+
+  queryParam = this.activatedRoute.snapshot.queryParamMap.get('query') ?? ''
+  query = linkedSignal<string>(() => this.queryParam)
+
 
   // IMPORTANT: resource is experimental. It's ready for you to try, but it might change before it is stable.
   countryResource = rxResource({
     params: () => ({ query: this.query() }),
     stream: ({ params }) => {
       if (!params.query) return of([]);
+
+      this.router.navigate(['/country/by-country'], {
+        queryParams: { query: params.query }
+      })
 
       return this.countryService.searchByCountry(params.query);
     },
