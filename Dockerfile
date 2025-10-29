@@ -26,7 +26,7 @@ FROM nginx:alpine
 RUN rm /etc/nginx/conf.d/default.conf
 
 # Copy only the built files and necessary assets from the build stage
-COPY --from=build /app/dist/zoneless-calculator /usr/share/nginx/html
+COPY --from=build /app/dist/country-app /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Expose the port the app runs on
