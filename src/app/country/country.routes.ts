@@ -16,7 +16,7 @@ const countryRoutes: Routes = [
 
       { path: 'by/:code', component: ByCountryCode },
 
-      { path: '**', redirectTo: 'by-capital' },
+      { path: '**', redirectTo: 'by-region' },
     ]
   },
 ];

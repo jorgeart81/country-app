@@ -25,7 +25,7 @@ export class ByRegionPage {
   activatedRoute = inject(ActivatedRoute)
   router = inject(Router)
 
-  queryParam = this.activatedRoute.snapshot.queryParamMap.get('query') ?? ''
+  queryParam = this.activatedRoute.snapshot.queryParamMap.get('query') ?? 'Africa'
   selectedRegion = linkedSignal<string>(() => this.queryParam)
 
   isSelected = (region: Region) => region === this.selectedRegion()
