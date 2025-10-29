@@ -31,7 +31,7 @@
   </div>
 </section>
 
-<section class="diff aspect-video">
+<section class="diff aspect-video" [style.view-transition-name]="`transition-${country().cca2}`">
   <div class="diff-item-1">
     <img [alt]="country().name" [src]="country().flagSvg" />
   </div>

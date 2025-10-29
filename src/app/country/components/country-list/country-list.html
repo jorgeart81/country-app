@@ -25,7 +25,7 @@
       <tr>
         <th>{{index+1}}</th>
         <th>{{item.flag}}</th>
-        <th><img [src]="item.flagSvg" [alt]="item.name" class="w-10"></th>
+        <th><img [src]="item.flagSvg" [alt]="item.name" [style.view-transition-name]="`transition-${item.cca2}`" class="w-10"></th>
         <th>{{item.name}}</th>
         <th>{{item.capital}}</th>
         <th><span class="badge badge-secondary">{{item.population | number}}</span></th>
