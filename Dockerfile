@@ -34,4 +34,4 @@ COPY nginx.conf /etc/nginx/nginx.conf.template
 EXPOSE 80
 
 # Substitute environment variables into nginx.conf and launch nginx
-CMD ["/bin/sh", "-c", "envsubst '${RESCOUNTRIES_API_URL} ${API_HOST} ${API_KEY}' < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"]
+CMD ["/bin/sh", "-c", "envsubst '${RESCOUNTRIES_API_URL} ${API_KEY}' < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"]
