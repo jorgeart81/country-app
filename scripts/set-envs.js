@@ -1,4 +1,3 @@
-
 const { writeFileSync, mkdirSync } = require('fs');
 
 require('dotenv').config();
@@ -6,21 +5,17 @@ require('dotenv').config();
 const targetPath = './src/environments/environment.ts';
 
 const production = process.env['PRODUCTION'] ?? false;
-const rescountriesApiUrl = process.env['RESCOUNTRIES_API_URL'];
+// Angular client URL (defaults to /api for proxy usage)
+const appApiUrl = process.env['APP_API_URL'] || process.env['RESCOUNTRIES_API_URL'] || '/api';
 
-if (!rescountriesApiUrl) {
-  throw new Error('RESCOUNTRIES_API_URL is not set');
-}
-
-
+// 1. Generate Angular environment variables
 const envFileContent = `
 export const environment = {
   production: ${production},
-  rescountriesApiUrl: "${rescountriesApiUrl}",
+  rescountriesApiUrl: "${appApiUrl}",
 };
 `;
 
-
 mkdirSync('./src/environments', { recursive: true });
-
 writeFileSync(targetPath, envFileContent);
+console.log('✓ environment.ts generated successfully');

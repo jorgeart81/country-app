@@ -27,10 +27,11 @@ RUN rm /etc/nginx/conf.d/default.conf
 
 # Copy only the built files and necessary assets from the build stage
 COPY --from=build /app/dist/country-app /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/nginx.conf
+# Copy template and let envsubst generate final nginx.conf on container startup
+COPY nginx.conf /etc/nginx/nginx.conf.template
 
 # Expose the port the app runs on
 EXPOSE 80
 
-# Start the web server
-CMD ["nginx", "-g", "daemon off;"]
+# Substitute environment variables into nginx.conf and launch nginx
+CMD ["/bin/sh", "-c", "envsubst '${RESCOUNTRIES_API_URL} ${API_HOST} ${API_KEY}' < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"]
