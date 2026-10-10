@@ -1,0 +1,20 @@
+# Ignore environment secrets
+.env
+.env.*
+!.env.template
+
+# Git
+.git
+.gitignore
+
+# Dependencies & Build artifacts
+node_modules
+npm-debug.log
+/dist
+/.angular
+
+# Editor & OS files
+.vscode
+.idea
+.DS_Store
+Thumbs.db
