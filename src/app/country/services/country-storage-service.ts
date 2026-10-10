@@ -20,16 +20,24 @@ export class CountryStorageService {
   }
 
   loadCountries(key: Exclude<CountryStorageKey, 'by-code'>): Record<string, Country[] | undefined> {
-    const data = sessionStorage.getItem(key)
-    if (!data || !Array.isArray(data)) return {}
+    const data = sessionStorage.getItem(key);
+    if (!data) return {};
 
-    return JSON.parse(data)
+    try {
+      return JSON.parse(data);
+    } catch {
+      return {};
+    }
   }
 
   loadCountry(key: Extract<CountryStorageKey, 'by-code'>): Record<string, Country | undefined> {
-    const data = sessionStorage.getItem(key)
-    if (!data || Array.isArray(data)) return {}
+    const data = sessionStorage.getItem(key);
+    if (!data) return {};
 
-    return JSON.parse(data)
+    try {
+      return JSON.parse(data);
+    } catch {
+      return {};
+    }
   }
 }
